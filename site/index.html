@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta name="htmx-config" content='{"selfRequestsOnly":false}'>
+
+  <meta charset="utf-8"/>
+  <meta http-equiv="Content-Language" content="en"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <title>Write The Fucking Manual</title>
+  <meta name="title" content="Write The Fucking Manual">
+  <meta name="description" content="Write The Fucking Manual">
+
+  <link rel="stylesheet" href="styles.css">
+  <script src="./alpine.min.js" defer></script>
+</head>
+<body class="bg-neutral-900 text-neutral-100 flex items-center justify-center h-screen">
+  <div class="rounded-lg shadow-lg w-full max-w-sm space-y-8">
+    <header class="space-y-6">
+      <h1 class="text-8xl font-semibold text-left">
+        <div>Write</div>
+        <div>The</div>
+        <div>Fucking</div>
+        <div>Manual</div>
+      </h1>
+      <p class="text-2xl font-light">From chaos to growth, one playbook at a time.</p>
+    </header>
+    <hr class="border-neutral-500"/>
+    <form
+      x-data="{
+        submitted: false,
+        submitting: false,
+        submitForm() {
+          this.submitting = true;
+          const formData = new FormData(this.$el);
+          const params = new URLSearchParams(formData).toString();
+          fetch(`https://hooks.zapier.com/hooks/catch/4734990/2jlmecb/?${params}`, {
+            method: 'GET',
+            mode: 'no-cors'
+          })
+          .then(() => {
+            console.log('Form submitted to Zapier');
+            this.$el.reset();
+            this.submitted = true;
+            this.submitting = false;
+          })
+          .catch(error => {
+            console.error('Error submitting form to Zapier:', error);
+          });
+        }
+      }"
+      @submit.prevent="submitForm()"
+      method="GET"
+      action="https://hooks.zapier.com/hooks/catch/4734990/2jlmecb/" class="space-y-6 font-mono">
+      <p class="text-neutral-100" x-show="submitted">
+        👍 Alright, you're on the list.
+      </p>
+      <p class="text-neutral-400">Leave your contact information and I'll send you give you a heads up when the book is ready.</p>
+      <input type="text" name="name" placeholder="Enter your name" class="px-3 py-2 border border-neutral-500 focus-visible:border-neutral-100 font-mono outline-none w-full">
+      <input type="email" name="email" placeholder="Enter your email" required class="px-3 py-2 border border-neutral-500 focus-visible:border-neutral-100 font-mono outline-none w-full">
+      <br>
+      <button type="submit" class="bg-neutral-100 text-neutral-900 px-4 py-2 cursor-pointer w-full font-mono disabled:opacity-50 disabled:cursor-not-allowed" :disabled="submitting">Sign Up</button>
+    </form>
+  </div>
+</body>
+</html>
