@@ -1,8 +1,8 @@
 {
   "scripts": {
     "build": "npm run css && npm run alpine",
-    "dev": "tailwindcss --silent -i ./src/styles.css -o ./docs/styles.css --watch",
-    "css": "tailwindcss -i ./src/styles.css -o ./docs/styles.css --minify",
+    "dev": "tailwindcss --silent -i ./src/style.css -o ./docs/style.css --watch",
+    "css": "tailwindcss -i ./src/style.css -o ./docs/style.css --minify",
     "alpine": "cp node_modules/alpinejs/dist/cdn.min.js ./site/alpine.min.js"
   },
   "devDependencies": {
