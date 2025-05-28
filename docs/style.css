@@ -231,6 +231,9 @@
   .border-neutral-500 {
     border-color: var(--color-neutral-500);
   }
+  .bg-\[\#111111\] {
+    background-color: #111111;
+  }
   .bg-neutral-100 {
     background-color: var(--color-neutral-100);
   }
