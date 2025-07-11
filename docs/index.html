@@ -33,7 +33,6 @@
   <link rel="apple-touch-icon" sizes="180x180" href="https://ronanberder.com/wtfm/apple-touch-icon.png" />
 
   <link rel="stylesheet" href="style.css">
-  <script src="./alpine.min.js" defer></script>
 </head>
 <body class="bg-[#111111] text-neutral-100 flex items-center justify-center min-h-screen">
   <div class="w-full max-w-sm space-y-8 p-4 block">
@@ -48,37 +47,16 @@
     </header>
     <hr class="border-neutral-500"/>
     <form
-      x-data="{
-        submitted: false,
-        submitting: false,
-        submitForm() {
-          this.submitting = true;
-          const formData = new FormData(this.$el);
-          const params = new URLSearchParams(formData).toString();
-          fetch(`https://hooks.zapier.com/hooks/catch/4734990/2jlmecb/?${params}`, {
-            method: 'GET',
-            mode: 'no-cors'
-          })
-          .then(() => {
-            console.log('Form submitted to Zapier');
-            this.$el.reset();
-            this.submitted = true;
-            this.submitting = false;
-          })
-          .catch(error => {
-            console.error('Error submitting form to Zapier:', error);
-          });
-        }
-      }"
-      @submit.prevent="submitForm()"
       method="GET"
-      action="https://hooks.zapier.com/hooks/catch/4734990/2jlmecb/" class="space-y-6 font-mono">
+      action="https://docs.google.com/forms/d/e/1FAIpQLSe76Wv8aVtb3OLbpyFR6Z6LmZqOXAzdW36_kcbZHjJdp9XUfg/viewform?usp=pp_url"
+      class="space-y-6 font-mono"
+    >
       <p class="text-neutral-100" x-show="submitted">
         👍 Alright, you're on the list.
       </p>
       <p class="text-neutral-400">Leave your contact information and I'll give you a heads up when the book is ready.</p>
-      <input type="text" name="name" placeholder="Enter your name" class="px-3 py-2 border border-neutral-500 focus-visible:border-neutral-100 font-mono outline-none w-full">
-      <input type="email" name="email" placeholder="Enter your email" required class="px-3 py-2 border border-neutral-500 focus-visible:border-neutral-100 font-mono outline-none w-full">
+      <input type="text" name="entry.1240682746" placeholder="Enter your name" class="px-3 py-2 border border-neutral-500 focus-visible:border-neutral-100 font-mono outline-none w-full">
+      <input type="email" name="entry.1319237181" placeholder="Enter your email" required class="px-3 py-2 border border-neutral-500 focus-visible:border-neutral-100 font-mono outline-none w-full">
       <br>
       <button type="submit" class="bg-neutral-100 text-neutral-900 px-4 py-2 cursor-pointer w-full font-mono disabled:opacity-50 disabled:cursor-not-allowed" :disabled="submitting">Sign Up</button>
     </form>
